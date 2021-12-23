@@ -7,7 +7,7 @@ TARGET := $(DIST)/index.js
 
 # Phony Targets
 .PHONY: all
-all: clean enviroment build
+all: enviroment build
 
 .PHONY: build
 build: $(TARGET)
@@ -21,6 +21,10 @@ enviroment:
 clean:
 	@echo "Cleaning"
 	@rm -drf $(DIST)
+
+.PHONY: server
+server:
+	@python3 -m http.server --directory dist 10000
 
 # Targets
 $(TARGET): src/main.cpp
