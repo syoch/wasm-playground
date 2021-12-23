@@ -3,15 +3,11 @@ DIST	?= dist
 SRC   ?= src
 HTML  ?= html
 
-TARGET := $(DIST)/index.js
+TARGET := $(DIST)/wasm.js
 
 # Phony Targets
 .PHONY: all
-all: enviroment build
-
-.PHONY: build
-build: $(TARGET)
-	cp $(HTML)/* $(DIST)
+all: enviroment $(TARGET)
 
 .PHONY: enviroment
 enviroment:
@@ -20,7 +16,7 @@ enviroment:
 .PHONY: clean
 clean:
 	@echo "Cleaning"
-	@rm -drf $(DIST)
+	@rm -drf $(DIST)/wasm.js $(DIST)/wasm.wasm
 
 .PHONY: server
 server:
