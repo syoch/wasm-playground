@@ -5,5 +5,17 @@
         "cmd": "make"
       }
     ]
+  },
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "dist/wasm*": true,
+    "**/.gitignore": true,
+    "Makefile": true,
+    ".vscode": true,
   }
 }
