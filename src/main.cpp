@@ -1,6 +1,6 @@
-#include <emscripten.h>
+#include <iostream>
 
 int main() {
-  EM_ASM(console.log('Hello, world!'););
+  std::cout << "Hello, World!" << std::endl;
   return 0;
 }
