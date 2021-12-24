@@ -17,5 +17,10 @@
     "**/.gitignore": true,
     "Makefile": true,
     ".vscode": true,
+  },
+  "files.associations": {
+    "*.mc": "json",
+    "*.meson": "meson",
+    "random": "cpp"
   }
 }

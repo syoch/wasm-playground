@@ -6,7 +6,9 @@
                 "${workspaceFolder}/**",
                 "/usr/lib/emscripten/system/include/"
             ],
-            "defines": [],
+            "defines": [
+                "__wasm__"
+            ],
             "compilerPath": "/usr/bin/gcc",
             "cStandard": "c17",
             "cppStandard": "c++20"

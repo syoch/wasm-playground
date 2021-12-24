@@ -25,4 +25,4 @@ server:
 # Targets
 $(TARGET): src/main.cpp
 	@echo "Building"
-	@em++ $^ -o $@
+	@em++ $^ -o $@ --std=c++17
