@@ -12,19 +12,10 @@ void PushArgument(const char *arg) {
   EM_ASM({ wasm_args.push(UTF8ToString($0)); }, arg);
 }
 
-void SetFunction(char *name) {
-  EM_ASM({ wasm_func = UTF8ToString($0); }, name);
-}
-
-void CallFunction() {
-  EM_ASM({ wasm_call(); });
-}
-
 template <typename... Args>
 void CallJSFunction(char *name, Args &&...args) {
   (PushArgument(args), ...);
-  SetFunction(name);
-  CallFunction();
+  EM_ASM({ eval(UTF8ToString($0))(... wasm_args); }, name);
 }
 
 int main() {
