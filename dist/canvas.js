@@ -14,7 +14,7 @@ function update_canvas_size() {
   canvas.height = canvas.clientHeight;
 }
 
-document.addEventListener('resize', update_canvas_size);
+window.addEventListener('resize', update_canvas_size);
 
 /**
  * Draw Rect on canvas
