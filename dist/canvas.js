@@ -20,10 +20,11 @@ $(() => {
  * @param {number} b Y coordinate of the first point
  * @param {number} c X coordinate of the second point
  * @param {number} d Y coordinate of the second point
- * @param {string} color Fill color
+ * @param {*} color Fill color
  */
-function DrawRect(a, b, c, d, color) {
+function DrawRect(a, b, c, d, _color) {
+  console.log("DrawRect", a, b, c, d, _color);
   update_canvas_size();
-  ctx.fillStyle = color;
+  ctx.fillStyle = _color.toString();
   ctx.fillRect(a, b, c, d);
 }
