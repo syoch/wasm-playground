@@ -2,7 +2,8 @@
   "saveAndRun": {
     "commands": [
       {
-        "cmd": "make"
+        "cmd": "make",
+        "match": "src/*"
       }
     ]
   },
