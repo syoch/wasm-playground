@@ -1,7 +1,6 @@
 # Configures
 DIST	?= dist
 SRC   ?= src
-HTML  ?= html
 
 TARGET := $(DIST)/wasm.js
 
@@ -23,6 +22,6 @@ server:
 	@python3 -m http.server --directory dist 10000
 
 # Targets
-$(TARGET): src/main.cpp
+$(TARGET): $(wildcard $(SRC)/*)
 	@echo "Building"
-	@em++ $^ -o $@ --std=c++20
+	@em++ src/main.cpp -o $@ --std=c++20
