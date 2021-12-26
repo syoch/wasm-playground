@@ -45,3 +45,14 @@ function clear_canvas() {
 function get_canvas_size() {
   return [canvas.width, canvas.height];
 }
+
+function start_canvas_loop() {
+  setInterval(() => {
+    Module.ccall(
+      'tick', // function name
+      'void', // return type
+      ['void'], // argument types
+      [] // arguments
+    );
+  }, 50 / 3);
+}
