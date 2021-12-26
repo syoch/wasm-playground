@@ -46,7 +46,7 @@ function get_canvas_size() {
   return [canvas.width, canvas.height];
 }
 
-function start_canvas_loop() {
+function start_canvas_loop(time) {
   setInterval(() => {
     Module.ccall(
       'tick', // function name
@@ -54,5 +54,5 @@ function start_canvas_loop() {
       ['void'], // argument types
       [] // arguments
     );
-  }, 50 / 3);
+  }, time);
 }
