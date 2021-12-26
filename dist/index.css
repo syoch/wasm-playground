@@ -23,4 +23,7 @@ body {
   left: 0vw;
   width: 100vw;
   height: 25vh;
+
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
