@@ -16,6 +16,7 @@ function update_canvas_size() {
 
 window.addEventListener('resize', update_canvas_size);
 
+
 /**
  * Draw Rect on canvas
  * @param {number} a X coordinate of the first point
@@ -28,6 +29,13 @@ function draw_rect(a, b, c, d, _color) {
   update_canvas_size();
   ctx.fillStyle = _color.toString();
   ctx.fillRect(a, b, c, d);
+}
+
+/**
+ * Clear canvas
+ */
+function clear_canvas() {
+  draw_rect(0, 0, canvas.width, canvas.height, "black");
 }
 
 /**
