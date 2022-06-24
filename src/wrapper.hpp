@@ -19,3 +19,13 @@ void CallJSFunction(T name, Args &&...args) {
   (PushArgument(args), ...);
   EM_ASM({ eval(UTF8ToString($0))(... wasm_args); }, name);
 }
+
+template <typename T, typename... Args>
+int CallJSIntFunction(T name, Args &&...args) {
+  EM_ASM(wasm_args = [];);
+  (PushArgument(args), ...);
+  auto ret = EM_ASM_INT({ eval(UTF8ToString($0))(... wasm_args); }, name);
+  std::cout << "called " << name << " -> " << ret << std::endl;
+
+  return ret;
+}

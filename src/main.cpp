@@ -1,23 +1,21 @@
 #include <iostream>
+#include <charconv>
 
 #include "canvas.hpp"
 
 extern "C" {
 void EMSCRIPTEN_KEEPALIVE tick() {
-  static int i = 0;
+  static int y = 0;
 
-  if (i % 2 == 0) {
-    DrawRect(0, 0, 100, 100, "red");
-  }
-  if (i % 2 == 1) {
-    DrawRect(0, 0, 100, 100, "blue");
+  for (int x = 0; x < 255; x++) {
+    DrawPixel(x, y, (x | y) << 0x10 | (x ^ ~y) << 0x08 | (x ^ y));
   }
 
-  i++;
+  y = (y + 1) % 256;
 }
 }
 int main() {
-  CallJSFunction("start_canvas_loop", 250);
+  CallJSFunction("start_canvas_loop", 1);
 
   return 0;
 }

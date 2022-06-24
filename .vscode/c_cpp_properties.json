@@ -3,8 +3,7 @@
         {
             "name": "wasm",
             "includePath": [
-                "${workspaceFolder}/**",
-                "/usr/lib/emscripten/system/include/"
+                "${workspaceFolder}/**"
             ],
             "defines": [
                 "__wasm__"
