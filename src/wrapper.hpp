@@ -1,31 +1,11 @@
 #pragma once
-#include <emscripten.h>
 
 #include <string>
+#include <iostream>
 
-template <typename T>
-void PushArgument(T arg) {
-  EM_ASM({ wasm_args.push($0); }, arg);
-}
+#include <emscripten.h>
+#include <emscripten/val.h>
+#include <emscripten/bind.h>
 
-template <>
-void PushArgument(const char *arg) {
-  EM_ASM({ wasm_args.push(UTF8ToString($0)); }, arg);
-}
-
-template <typename T, typename... Args>
-void CallJSFunction(T name, Args &&...args) {
-  EM_ASM(wasm_args = [];);
-  (PushArgument(args), ...);
-  EM_ASM({ eval(UTF8ToString($0))(... wasm_args); }, name);
-}
-
-template <typename T, typename... Args>
-int CallJSIntFunction(T name, Args &&...args) {
-  EM_ASM(wasm_args = [];);
-  (PushArgument(args), ...);
-  auto ret = EM_ASM_INT({ eval(UTF8ToString($0))(... wasm_args); }, name);
-  std::cout << "called " << name << " -> " << ret << std::endl;
-
-  return ret;
-}
+using emscripten::val;
+using namespace std::literals;

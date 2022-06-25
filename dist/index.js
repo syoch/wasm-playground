@@ -1,5 +1,3 @@
-var wasm_args = [];
-
 function make_console_hook(name) {
   return function () {
     $('#console').append(name + ": " + [...arguments].join(" ") + '<br>');

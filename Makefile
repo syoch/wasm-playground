@@ -24,6 +24,6 @@ server:
 # Targets
 $(TARGET): $(wildcard $(SRC)/*)
 	@echo "Building"
-	@em++ src/main.cpp -o $@ --std=c++20 \
+	@em++ --bind src/main.cpp -o $@ --std=c++20 \
 		-s EXPORTED_RUNTIME_METHODS='["ccall","cwrap"]' \
 		-s EXPORTED_FUNCTIONS='["_main", "_tick"]' \

@@ -1,20 +1,36 @@
 #pragma once
 #include "wrapper.hpp"
 
+namespace std {
+std::string to_string(const char* s) { return std::string(s); }
+}  // namespace std
+
+namespace canvas {
+
+thread_local val ctx("0");
+thread_local val canvas("0");
+
 template <typename T>
 void DrawRect(int x, int y, int w, int h, T color) {
-  CallJSFunction("draw_rect", x, y, w, h, color);
+  if (!ctx.as<bool>()) return;
+  ctx.set("fillStyle", std::to_string(color));
+  ctx.call<void>("fillRect", x, y, w, h);
 }
 
-// color: RGB u8
-void DrawPixel(int x, int y, uint32_t color) {
-  CallJSFunction("draw_pixel", x, y, color);
+void DrawPixel(int x, int y, uint8_t r, uint8_t g, uint8_t b) {
+  if (!ctx.as<bool>()) return;
+  val img = ctx.call<val>("getImageData", x, y, 1, 1);
+  img["data"].set(0, r);
+  img["data"].set(1, g);
+  img["data"].set(2, b);
+  img["data"].set(3, 255);
+  ctx.call<void>("putImageData", img, x, y);
 }
 
-inline int GetCanvasWidth() { return EM_ASM_INT({return get_canvas_width()}); }
+inline int GetWidth() { return canvas["width"].as<int>(); }
 
-inline int GetCanvasHeight() {
-  return EM_ASM_INT_V({return get_canvas_height()});
-}
+inline int GetHeight() { return canvas["height"].as<int>(); }
 
-inline void ClearCanvas() { CallJSFunction("clear_canavs"); }
+inline void Clear() { DrawRect(0, 0, GetWidth(), GetHeight(), "black"); }
+
+}  // namespace canvas
